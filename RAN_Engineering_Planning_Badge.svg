@@ -152,8 +152,8 @@
   <textPath href="#topArc" startOffset="50%">NATIONAL RAN ENGINEERING &amp; PLANNING</textPath>
 </text>
 <text font-family="Arial, sans-serif" font-weight="700"
-      font-size="15.5" fill="#ff8800" letter-spacing="2">
-  <textPath href="#bottomArc" startOffset="10%">INNOVATION · COLLABORATION · TECHNOLOGY</textPath>
+      font-size="15.5" fill="#ff8800" letter-spacing="2" text-anchor="middle">
+  <textPath href="#bottomArc" startOffset="50%">INNOVATION · COLLABORATION · TECHNOLOGY</textPath>
 </text>
 
 <!-- ================================================================ -->
