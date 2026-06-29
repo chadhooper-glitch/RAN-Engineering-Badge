@@ -37,32 +37,6 @@
       max-width: 500px;
       max-height: 500px;
       display: block;
-
-      /* Outer glow — makes it pop against the white Google Sites page */
-      filter:
-        drop-shadow(0 0 18px rgba(0, 212, 255, 0.45))
-        drop-shadow(0 0 36px rgba(0, 212, 255, 0.20))
-        drop-shadow(0 0  6px rgba(0, 212, 255, 0.70));
-
-      /* Subtle float animation */
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0px);
-        filter:
-          drop-shadow(0 0 18px rgba(0, 212, 255, 0.45))
-          drop-shadow(0 0 36px rgba(0, 212, 255, 0.20))
-          drop-shadow(0 0  6px rgba(0, 212, 255, 0.70));
-      }
-      50% {
-        transform: translateY(-6px);
-        filter:
-          drop-shadow(0 8px 24px rgba(0, 212, 255, 0.50))
-          drop-shadow(0 0  48px rgba(0, 212, 255, 0.25))
-          drop-shadow(0 0   8px rgba(0, 212, 255, 0.75));
-      }
     }
 
     .badge-label { display: none; }
