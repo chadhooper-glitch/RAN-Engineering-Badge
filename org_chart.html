@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAN Engineering &amp; Planning — Org Chart</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #6b6b6b;
+      color: #111;
+      padding: 40px 20px 60px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 40px;
+      color: #111;
+    }
+
+    /* ── CARD ── */
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px 16px;
+    }
+
+    .card img, .card .placeholder {
+      width: 200px;
+      height: 220px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      background: #999;
+    }
+
+    .placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .placeholder svg {
+      width: 90px;
+      height: 90px;
+      opacity: 0.5;
+    }
+
+    .card .name {
+      font-weight: 900;
+      font-size: 1.05rem;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    .card .title-line {
+      font-size: 0.88rem;
+      color: #222;
+      margin-bottom: 4px;
+    }
+
+    .card .links {
+      margin-top: 12px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .card .links a {
+      font-size: 0.88rem;
+      color: #1155cc;
+      text-decoration: underline;
+    }
+
+    .card .links a:hover { color: #0b3a8a; }
+
+    /* ── ROWS ── */
+    .row-solo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .row-trio {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0 40px;
+    }
+
+    /* ── DIVIDERS ── */
+    .divider {
+      border: none;
+      border-top: 2px solid #444;
+      margin: 10px 0 30px;
+    }
+
+    .divider-light {
+      border: none;
+      border-top: 1px solid #888;
+      margin: 0 auto 30px;
+      width: 60%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>RAN Engineering &amp; Planning Org Chart</h1>
+
+  <!-- ── MICHAEL MCLAUGHLIN ── -->
+  <div class="row-solo">
+    <div class="card">
+      <div class="placeholder">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="#555">
+          <circle cx="50" cy="34" r="22"/>
+          <ellipse cx="50" cy="85" rx="34" ry="22"/>
+        </svg>
+      </div>
+      <div class="name">Michael McLaughlin</div>
+      <div class="title-line">Senior Director — Network Construction</div>
+      <div class="title-line">Technical Facilities Engineering</div>
+      <div class="links">
+        <a href="mailto:michael.mclaughlin@verizon.com">Email</a>
+        <a href="#">Slack</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── SOFIA SILVA MONTOYA ── -->
+  <div class="row-solo">
+    <div class="card">
+      <img src="sofia.png" alt="Sofia Silva Montoya">
+      <div class="name">Sofia Silva Montoya</div>
+      <div class="title-line">Associate Director — Network Planning</div>
+      <div class="title-line">National RAN Planning &amp; Engineering</div>
+      <div class="links">
+        <a href="mailto:sofia.silvamontoya@verizon.com">Email</a>
+        <a href="#">Slack</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── STACEY · RYAN · CHAD ── -->
+  <div class="row-trio">
+
+    <div class="card">
+      <div class="placeholder">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="#555">
+          <circle cx="50" cy="34" r="22"/>
+          <ellipse cx="50" cy="85" rx="34" ry="22"/>
+        </svg>
+      </div>
+      <div class="name">Stacey Sattler</div>
+      <div class="title-line">Principal Engineer, National Planning</div>
+      <div class="title-line">SIM Budgets &amp; Strategic Alignment</div>
+      <div class="links">
+        <a href="mailto:stacey.sattler@verizon.com">Email</a>
+        <a href="#">Slack</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="ryan.png" alt="Ryan McSorley">
+      <div class="name">Ryan McSorley</div>
+      <div class="title-line">Principal Engineer, National Planning</div>
+      <div class="title-line">Energy Efficiency &amp; CRAN Hub Infrastructure</div>
+      <div class="links">
+        <a href="mailto:ryan.mcsorley@verizon.com">Email</a>
+        <a href="#">Slack</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="placeholder">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="#555">
+          <circle cx="50" cy="34" r="22"/>
+          <ellipse cx="50" cy="85" rx="34" ry="22"/>
+        </svg>
+      </div>
+      <div class="name">Chad Hooper</div>
+      <div class="title-line">Distinguished Engineer, National Planning</div>
+      <div class="title-line">RAN Cell Site &amp; iEN Hub SME</div>
+      <div class="links">
+        <a href="mailto:chad.hooper@verizon.com">Email</a>
+        <a href="#">Slack</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
