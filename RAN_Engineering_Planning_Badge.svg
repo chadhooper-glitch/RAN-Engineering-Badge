@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+<defs>
+
+  <!-- ===== FILTERS ===== -->
+  <filter id="reactorGlow" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="reactorCoreFilter" x="-120%" y="-120%" width="340%" height="340%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="hudGlow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="blueGlow" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="towerShadow" x="-15%" y="-10%" width="130%" height="130%">
+    <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000030" flood-opacity="0.95"/>
+  </filter>
+  <filter id="textGlow" x="-20%" y="-60%" width="140%" height="220%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+
+  <!-- ===== GRADIENTS ===== -->
+  <!-- Ultra-dark background — deep space / Iron Man HUD -->
+  <radialGradient id="bgGrad" cx="50%" cy="42%" r="68%">
+    <stop offset="0%"   stop-color="#080e1e"/>
+    <stop offset="50%"  stop-color="#040810"/>
+    <stop offset="100%" stop-color="#010204"/>
+  </radialGradient>
+
+  <!-- Arc Reactor ambient glow -->
+  <radialGradient id="reactorAmbient" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="#00d4ff" stop-opacity="0.35"/>
+    <stop offset="40%"  stop-color="#0088cc" stop-opacity="0.15"/>
+    <stop offset="75%"  stop-color="#0044aa" stop-opacity="0.06"/>
+    <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- Arc Reactor core -->
+  <radialGradient id="reactorCore" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="#ffffff"/>
+    <stop offset="25%"  stop-color="#aaeeff"/>
+    <stop offset="55%"  stop-color="#00ccff"/>
+    <stop offset="80%"  stop-color="#0088cc"/>
+    <stop offset="100%" stop-color="#004488"/>
+  </radialGradient>
+
+  <!-- Arc Reactor inner ring -->
+  <radialGradient id="reactorInner" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="#00eeff" stop-opacity="0.9"/>
+    <stop offset="60%"  stop-color="#0099cc" stop-opacity="0.6"/>
+    <stop offset="100%" stop-color="#003355" stop-opacity="0.3"/>
+  </radialGradient>
+
+  <!-- Crystal panel gradient -->
+  <linearGradient id="crystalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%"   stop-color="#44eeff"/>
+    <stop offset="40%"  stop-color="#00aadd"/>
+    <stop offset="100%" stop-color="#005588"/>
+  </linearGradient>
+
+  <!-- Copper coil gradient -->
+  <linearGradient id="copperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%"   stop-color="#e8a060"/>
+    <stop offset="40%"  stop-color="#c87533"/>
+    <stop offset="100%" stop-color="#8a4510"/>
+  </linearGradient>
+
+  <linearGradient id="towerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%"   stop-color="#607080"/>
+    <stop offset="30%"  stop-color="#a8c0d0"/>
+    <stop offset="50%"  stop-color="#daeeff"/>
+    <stop offset="70%"  stop-color="#a8c0d0"/>
+    <stop offset="100%" stop-color="#607080"/>
+  </linearGradient>
+  <radialGradient id="beaconGrad" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="#ffffff"/>
+    <stop offset="40%"  stop-color="#ffffaa"/>
+    <stop offset="80%"  stop-color="#ff6600"/>
+    <stop offset="100%" stop-color="#cc0000"/>
+  </radialGradient>
+  <radialGradient id="beaconBlast" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.9"/>
+    <stop offset="30%"  stop-color="#ffdd44" stop-opacity="0.5"/>
+    <stop offset="70%"  stop-color="#ff4400" stop-opacity="0.2"/>
+    <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="outerRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%"   stop-color="#cd040b"/>
+    <stop offset="30%"  stop-color="#ff5500"/>
+    <stop offset="60%"  stop-color="#cd040b"/>
+    <stop offset="100%" stop-color="#ff5500"/>
+  </linearGradient>
+  <linearGradient id="taglineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%"   stop-color="#00aacc" stop-opacity="0"/>
+    <stop offset="20%"  stop-color="#00aacc"/>
+    <stop offset="80%"  stop-color="#00aacc"/>
+    <stop offset="100%" stop-color="#00aacc" stop-opacity="0"/>
+  </linearGradient>
+
+  <!-- ===== TEXT ARCS ===== -->
+  <path id="topArc"    d="M 34,300 A 266,266 0 0,1 566,300"/>
+  <path id="bottomArc" d="M 66,348 A 244,244 0 0,0 534,348"/>
+
+  <!-- ===== CLIP ===== -->
+  <clipPath id="innerClip">
+    <circle cx="300" cy="300" r="247"/>
+  </clipPath>
+</defs>
+
+<!-- ================================================================ -->
+<!--  OUTER BADGE STRUCTURE                                           -->
+<!-- ================================================================ -->
+<circle cx="300" cy="300" r="298" fill="#02030a"/>
+<circle cx="300" cy="300" r="292" fill="none" stroke="url(#outerRingGrad)" stroke-width="5.5"/>
+<circle cx="300" cy="300" r="284" fill="none" stroke="#8b0000" stroke-width="1.2" stroke-dasharray="6,9" opacity="0.75"/>
+
+<!-- Node dots -->
+<g fill="#ff6600">
+  <circle cx="584" cy="300" r="6"/>
+  <circle cx="300" cy="16"  r="6"/>
+  <circle cx="16"  cy="300" r="6"/>
+  <circle cx="300" cy="584" r="6"/>
+</g>
+<g fill="#cd040b">
+  <circle cx="546" cy="442" r="4.5"/><circle cx="442" cy="546" r="4.5"/>
+  <circle cx="158" cy="546" r="4.5"/><circle cx="54"  cy="442" r="4.5"/>
+  <circle cx="54"  cy="158" r="4.5"/><circle cx="158" cy="54"  r="4.5"/>
+  <circle cx="442" cy="54"  r="4.5"/><circle cx="546" cy="158" r="4.5"/>
+</g>
+<g stroke="#cd040b" stroke-width="2" opacity="0.65">
+  <line x1="584" y1="300" x2="552" y2="300"/>
+  <line x1="16"  y1="300" x2="48"  y2="300"/>
+  <line x1="300" y1="16"  x2="300" y2="48"/>
+  <line x1="300" y1="584" x2="300" y2="552"/>
+</g>
+<circle cx="300" cy="300" r="271" fill="none" stroke="#0057a8" stroke-width="1.5" opacity="0.5"/>
+<circle cx="300" cy="300" r="250" fill="none" stroke="#0057a8" stroke-width="2.2" opacity="0.8"/>
+
+<!-- ================================================================ -->
+<!--  ARC TEXT                                                        -->
+<!-- ================================================================ -->
+<text font-family="Arial Black, Impact, sans-serif" font-weight="900"
+      font-size="20" fill="white" letter-spacing="3.5">
+  <textPath href="#topArc" startOffset="9%">NATIONAL RAN ENGINEERING &amp; PLANNING</textPath>
+</text>
+<text font-family="Arial, sans-serif" font-weight="700"
+      font-size="15.5" fill="#ff8800" letter-spacing="2">
+  <textPath href="#bottomArc" startOffset="10%">INNOVATION · COLLABORATION · TECHNOLOGY</textPath>
+</text>
+
+<!-- ================================================================ -->
+<!--  INNER CIRCLE — IRON MAN HUD BACKGROUND                         -->
+<!-- ================================================================ -->
+<circle cx="300" cy="300" r="247" fill="url(#bgGrad)"/>
+
+<!-- ── RADIAL GUIDE LINES (12 spokes from center, very faint) ────── -->
+<g clip-path="url(#innerClip)" stroke="#00aadd" stroke-width="0.5" opacity="0.09">
+  <line x1="300" y1="300" x2="300" y2="57"/>
+  <line x1="300" y1="300" x2="420" y2="92"/>
+  <line x1="300" y1="300" x2="508" y2="180"/>
+  <line x1="300" y1="300" x2="540" y2="300"/>
+  <line x1="300" y1="300" x2="508" y2="420"/>
+  <line x1="300" y1="300" x2="420" y2="508"/>
+  <line x1="300" y1="300" x2="300" y2="543"/>
+  <line x1="300" y1="300" x2="180" y2="508"/>
+  <line x1="300" y1="300" x2="92"  y2="420"/>
+  <line x1="300" y1="300" x2="60"  y2="300"/>
+  <line x1="300" y1="300" x2="92"  y2="180"/>
+  <line x1="300" y1="300" x2="180" y2="92"/>
+</g>
+
+<!-- ── RANGE RINGS (like targeting radar) ────────────────────────── -->
+<g clip-path="url(#innerClip)" fill="none" stroke="#00aadd" opacity="0.07">
+  <circle cx="300" cy="300" r="65"  stroke-width="0.8"/>
+  <circle cx="300" cy="300" r="115" stroke-width="0.8"/>
+  <circle cx="300" cy="300" r="165" stroke-width="0.8"/>
+  <circle cx="300" cy="300" r="215" stroke-width="0.6"/>
+</g>
+
+<!-- ── LARGE HEXAGONAL OUTLINES (HUD geometric overlay) ──────────── -->
+<!-- Central large hex (flat-top, r=145) — very subtle -->
+<polygon clip-path="url(#innerClip)"
+  fill="none" stroke="#00d4ff" stroke-width="0.6" opacity="0.055"
+  points="445,300 372,426 228,426 155,300 228,174 372,174"/>
+<!-- Rotated second hex for layered look -->
+<polygon clip-path="url(#innerClip)"
+  fill="none" stroke="#00aadd" stroke-width="0.5" opacity="0.04"
+  points="300,155 424,227 424,373 300,445 176,373 176,227"/>
+<!-- Medium hex upper-left -->
+<polygon clip-path="url(#innerClip)"
+  fill="none" stroke="#00d4ff" stroke-width="0.8" opacity="0.12"
+  points="168,162 191,148 214,162 214,190 191,204 168,190"/>
+<!-- Medium hex lower-right -->
+<polygon clip-path="url(#innerClip)"
+  fill="none" stroke="#00d4ff" stroke-width="0.8" opacity="0.12"
+  points="386,398 409,384 432,398 432,426 409,440 386,426"/>
+<!-- Small hex upper-right -->
+<polygon clip-path="url(#innerClip)"
+  fill="none" stroke="#ff8800" stroke-width="0.7" opacity="0.15"
+  points="400,148 416,138 432,148 432,168 416,178 400,168"/>
+
+<!-- ── TARGETING RETICLE — upper left ─────────────────────────────── -->
+<g clip-path="url(#innerClip)" filter="url(#hudGlow)">
+  <circle cx="174" cy="175" r="34" fill="none" stroke="#00d4ff" stroke-width="0.9" opacity="0.45"/>
+  <circle cx="174" cy="175" r="24" fill="none" stroke="#00aadd" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="174" cy="175" r="5"  fill="none" stroke="#ff8800" stroke-width="1.2" opacity="0.6"/>
+  <!-- Crosshair ticks -->
+  <line x1="174" y1="141" x2="174" y2="152" stroke="#00d4ff" stroke-width="1.2" opacity="0.6"/>
+  <line x1="174" y1="198" x2="174" y2="209" stroke="#00d4ff" stroke-width="1.2" opacity="0.6"/>
+  <line x1="140" y1="175" x2="151" y2="175" stroke="#00d4ff" stroke-width="1.2" opacity="0.6"/>
+  <line x1="197" y1="175" x2="208" y2="175" stroke="#00d4ff" stroke-width="1.2" opacity="0.6"/>
+  <!-- 45° tick marks -->
+  <line x1="150" y1="151" x2="156" y2="157" stroke="#00aadd" stroke-width="0.8" opacity="0.4"/>
+  <line x1="192" y1="151" x2="198" y2="157" stroke="#00aadd" stroke-width="0.8" opacity="0.4"/>
+  <line x1="150" y1="199" x2="156" y2="193" stroke="#00aadd" stroke-width="0.8" opacity="0.4"/>
+  <line x1="192" y1="199" x2="198" y2="193" stroke="#00aadd" stroke-width="0.8" opacity="0.4"/>
+  <!-- Corner brackets -->
+  <path d="M 143,156 L 143,149 L 150,149" fill="none" stroke="#ff8800" stroke-width="1.2" opacity="0.55"/>
+  <path d="M 205,156 L 205,149 L 198,149" fill="none" stroke="#ff8800" stroke-width="1.2" opacity="0.55"/>
+  <path d="M 143,194 L 143,201 L 150,201" fill="none" stroke="#ff8800" stroke-width="1.2" opacity="0.55"/>
+  <path d="M 205,194 L 205,201 L 198,201" fill="none" stroke="#ff8800" stroke-width="1.2" opacity="0.55"/>
+</g>
+
+<!-- ── TARGETING RETICLE — lower right ───────────────────────────── -->
+<g clip-path="url(#innerClip)" filter="url(#hudGlow)">
+  <circle cx="418" cy="400" r="30" fill="none" stroke="#ff8800" stroke-width="0.9" opacity="0.4"/>
+  <circle cx="418" cy="400" r="20" fill="none" stroke="#ff8800" stroke-width="0.6" opacity="0.3"/>
+  <circle cx="418" cy="400" r="4"  fill="#ff8800" opacity="0.4"/>
+  <!-- Tick marks -->
+  <line x1="418" y1="370" x2="418" y2="380" stroke="#ff8800" stroke-width="1" opacity="0.55"/>
+  <line x1="418" y1="420" x2="418" y2="430" stroke="#ff8800" stroke-width="1" opacity="0.55"/>
+  <line x1="388" y1="400" x2="398" y2="400" stroke="#ff8800" stroke-width="1" opacity="0.55"/>
+  <line x1="438" y1="400" x2="448" y2="400" stroke="#ff8800" stroke-width="1" opacity="0.55"/>
+  <!-- Corner brackets -->
+  <path d="M 392,378 L 392,372 L 398,372" fill="none" stroke="#ff8800" stroke-width="1.2" opacity="0.5"/>
+  <path d="M 444,378 L 444,372 L 438,372" fill="none" stroke="#ff8800" stroke-width="1.2" opacity="0.5"/>
+  <path d="M 392,422 L 392,428 L 398,428" fill="none" stroke="#ff8800" stroke-width="1.2" opacity="0.5"/>
+  <path d="M 444,422 L 444,428 L 438,428" fill="none" stroke="#ff8800" stroke-width="1.2" opacity="0.5"/>
+</g>
+
+<!-- ── SCANNING SWEEP LINE (radar sweep animation) ────────────────── -->
+<g clip-path="url(#innerClip)" opacity="0.35">
+  <line x1="300" y1="300" x2="300" y2="80" stroke="#00ffff" stroke-width="1.2">
+    <animateTransform attributeName="transform" type="rotate"
+      from="0,300,300" to="360,300,300" dur="8s" repeatCount="indefinite"/>
+  </line>
+  <!-- Sweep trail (fading arc approximated as a wedge) -->
+  <path d="M 300,300 L 300,80 A 220,220 0 0,1 432,190 Z" fill="#00d4ff" opacity="0.04">
+    <animateTransform attributeName="transform" type="rotate"
+      from="0,300,300" to="360,300,300" dur="8s" repeatCount="indefinite"/>
+  </path>
+</g>
+
+<!-- ── HUD DATA READOUT PANELS ────────────────────────────────────── -->
+<!-- Upper right data block -->
+<g clip-path="url(#innerClip)" filter="url(#hudGlow)" opacity="0.72">
+  <rect x="368" y="134" width="84" height="58" rx="2" fill="#000d18" stroke="#00aadd" stroke-width="0.7" opacity="0.5"/>
+  <line x1="368" y1="144" x2="452" y2="144" stroke="#00aadd" stroke-width="0.5" opacity="0.5"/>
+  <text x="374" y="142" font-family="Courier New, monospace" font-size="7.5" fill="#00d4ff" letter-spacing="0.5">SYS STATUS</text>
+  <text x="374" y="155" font-family="Courier New, monospace" font-size="8" fill="#00ffff">FREQ  850/1900MHz</text>
+  <text x="374" y="166" font-family="Courier New, monospace" font-size="8" fill="#00ffff">PWR   97.4 kW</text>
+  <text x="374" y="177" font-family="Courier New, monospace" font-size="8" fill="#00ff88">UE    12,847</text>
+  <text x="374" y="188" font-family="Courier New, monospace" font-size="8" fill="#00ff88">STAT  ● ONLINE</text>
+</g>
+
+<!-- Lower left data block -->
+<g clip-path="url(#innerClip)" filter="url(#hudGlow)" opacity="0.68">
+  <rect x="110" y="390" width="84" height="58" rx="2" fill="#000d18" stroke="#00aadd" stroke-width="0.7" opacity="0.5"/>
+  <line x1="110" y1="400" x2="194" y2="400" stroke="#00aadd" stroke-width="0.5" opacity="0.5"/>
+  <text x="116" y="398" font-family="Courier New, monospace" font-size="7.5" fill="#00d4ff" letter-spacing="0.5">NETWORK OPS</text>
+  <text x="116" y="411" font-family="Courier New, monospace" font-size="8" fill="#00ffff">REG   19 / 19</text>
+  <text x="116" y="422" font-family="Courier New, monospace" font-size="8" fill="#00ffff">NODES 81,247</text>
+  <text x="116" y="433" font-family="Courier New, monospace" font-size="8" fill="#ff8800">UPTIME 99.97%</text>
+  <text x="116" y="444" font-family="Courier New, monospace" font-size="8" fill="#00ff88">5G   ● ACTIVE</text>
+</g>
+
+<!-- Small coordinate readout, upper area -->
+<g clip-path="url(#innerClip)" opacity="0.5">
+  <text x="110" y="156" font-family="Courier New, monospace" font-size="7" fill="#00d4ff">40.71°N 74.00°W</text>
+  <text x="110" y="167" font-family="Courier New, monospace" font-size="7" fill="#00aadd">ALT: 312m  ▲ NNE</text>
+</g>
+
+<!-- Progress bars (right side) -->
+<g clip-path="url(#innerClip)" filter="url(#hudGlow)" opacity="0.55">
+  <text x="440" y="310" font-family="Courier New, monospace" font-size="7" fill="#00d4ff">LOAD</text>
+  <rect x="440" y="314" width="38" height="4" rx="1" fill="#001a2e"/>
+  <rect x="440" y="314" width="32" height="4" rx="1" fill="#00d4ff"/>
+  <text x="440" y="328" font-family="Courier New, monospace" font-size="7" fill="#00d4ff">TEMP</text>
+  <rect x="440" y="332" width="38" height="4" rx="1" fill="#001a2e"/>
+  <rect x="440" y="332" width="24" height="4" rx="1" fill="#00ff88"/>
+  <text x="440" y="346" font-family="Courier New, monospace" font-size="7" fill="#ff8800">BATT</text>
+  <rect x="440" y="350" width="38" height="4" rx="1" fill="#001a2e"/>
+  <rect x="440" y="350" width="36" height="4" rx="1" fill="#ff8800"/>
+</g>
+
+<!-- ================================================================ -->
+<!--  ARC REACTOR — centered at (300, 282), Iron Man style            -->
+<!--  Layers: ambient glow → outer ring → copper coils →              -->
+<!--          inner crystal segments → inner ring → core              -->
+<!-- ================================================================ -->
+
+<!-- AMBIENT GLOW (widest, most transparent) -->
+<circle cx="300" cy="282" r="108" fill="url(#reactorAmbient)" clip-path="url(#innerClip)">
+  <animate attributeName="r" values="104;115;104" dur="2.0s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="1;0.7;1" dur="2.0s" repeatCount="indefinite"/>
+</circle>
+
+<!-- Secondary glow ring -->
+<circle cx="300" cy="282" r="86" fill="none" stroke="#00d4ff" stroke-width="1"
+        opacity="0.18" filter="url(#reactorGlow)" clip-path="url(#innerClip)"/>
+
+<!-- OUTER STRUCTURAL RING (dark, heavy) -->
+<circle cx="300" cy="282" r="78" fill="#0a1218" stroke="#1e3040" stroke-width="2" clip-path="url(#innerClip)"/>
+<circle cx="300" cy="282" r="84" fill="none" stroke="#0d1e2a" stroke-width="10" clip-path="url(#innerClip)"/>
+<circle cx="300" cy="282" r="89" fill="none" stroke="#00d4ff" stroke-width="0.8" opacity="0.3" clip-path="url(#innerClip)"/>
+<circle cx="300" cy="282" r="79" fill="none" stroke="#00d4ff" stroke-width="0.6" opacity="0.2" clip-path="url(#innerClip)"/>
+
+<!-- 12 COPPER COIL SEGMENTS (outer ring, rotated) -->
+<!-- Base coil at 12 o'clock: centered at (300, 282-78)=(300,204), rect 14×22 -->
+<g clip-path="url(#innerClip)">
+  <!-- Dark backing plates -->
+  <g fill="#081018">
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(0,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(30,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(60,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(90,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(120,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(150,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(180,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(210,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(240,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(270,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(300,300,282)"/>
+    <rect x="292" y="193" width="16" height="22" rx="1" transform="rotate(330,300,282)"/>
+  </g>
+  <!-- Copper coil faces -->
+  <g fill="url(#copperGrad)">
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(0,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(30,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(60,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(90,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(120,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(150,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(180,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(210,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(240,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(270,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(300,300,282)"/>
+    <rect x="294" y="195" width="12" height="18" rx="1" transform="rotate(330,300,282)"/>
+  </g>
+  <!-- Copper highlight sheen -->
+  <g fill="#f0c080" opacity="0.45">
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(0,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(30,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(60,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(90,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(120,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(150,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(180,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(210,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(240,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(270,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(300,300,282)"/>
+    <rect x="296" y="196" width="4" height="16" rx="0.5" transform="rotate(330,300,282)"/>
+  </g>
+  <!-- Coil glow (each coil emits slight cyan glow) -->
+  <g fill="#00d4ff" opacity="0.18" filter="url(#hudGlow)">
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(0,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(30,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(60,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(90,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(120,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(150,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(180,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(210,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(240,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(270,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(300,300,282)"/>
+    <rect x="293" y="194" width="14" height="20" rx="1" transform="rotate(330,300,282)"/>
+  </g>
+</g>
+
+<!-- INNER DARK SEPARATOR RING -->
+<circle cx="300" cy="282" r="70" fill="#060e16" stroke="#0d1e2c" stroke-width="1.5" clip-path="url(#innerClip)"/>
+
+<!-- 12 INNER CRYSTAL PANELS (glowing cyan) — at r=62, 12 o'clock base: (300, 220) -->
+<g clip-path="url(#innerClip)">
+  <!-- Crystal glow backing -->
+  <g fill="#00aadd" filter="url(#hudGlow)" opacity="0.7">
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(0,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(30,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(60,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(90,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(120,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(150,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(180,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(210,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(240,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(270,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(300,300,282)"/>
+    <rect x="289" y="213" width="22" height="14" rx="2" transform="rotate(330,300,282)"/>
+  </g>
+  <!-- Crystal face (solid) -->
+  <g fill="url(#crystalGrad)">
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(0,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(30,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(60,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(90,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(120,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(150,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(180,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(210,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(240,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(270,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(300,300,282)"/>
+    <rect x="290" y="214" width="20" height="12" rx="1.5" transform="rotate(330,300,282)"/>
+  </g>
+  <!-- Crystal bright top edge highlight -->
+  <g fill="#aaffff" opacity="0.55">
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(0,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(30,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(60,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(90,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(120,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(150,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(180,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(210,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(240,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(270,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(300,300,282)"/>
+    <rect x="291" y="214" width="18" height="3" rx="1" transform="rotate(330,300,282)"/>
+  </g>
+</g>
+
+<!-- INNER RING (separates crystals from core) -->
+<circle cx="300" cy="282" r="52" fill="#04090e" stroke="#00aadd" stroke-width="1.2" opacity="0.6" clip-path="url(#innerClip)"/>
+<circle cx="300" cy="282" r="48" fill="#030710" clip-path="url(#innerClip)"/>
+
+<!-- CORE GLOW (pulsing energy) -->
+<circle cx="300" cy="282" r="42" fill="url(#reactorCore)" filter="url(#reactorCoreFilter)"
+        clip-path="url(#innerClip)">
+  <animate attributeName="r"       values="40;46;40" dur="2.0s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0.85;1;0.85" dur="2.0s" repeatCount="indefinite"/>
+</circle>
+<circle cx="300" cy="282" r="35" fill="url(#reactorInner)" clip-path="url(#innerClip)"/>
+<circle cx="300" cy="282" r="22" fill="#aaeeff" opacity="0.9" clip-path="url(#innerClip)">
+  <animate attributeName="opacity" values="0.9;1;0.9" dur="2.0s" repeatCount="indefinite"/>
+</circle>
+<!-- White hot center point -->
+<circle cx="300" cy="282" r="10" fill="white" clip-path="url(#innerClip)"/>
+
+
+<!-- ================================================================ -->
+<!--  CELL TOWER                                                      -->
+<!-- ================================================================ -->
+<g filter="url(#towerShadow)">
+  <line x1="248" y1="502" x2="294" y2="162" stroke="url(#towerGrad)" stroke-width="4"/>
+  <line x1="352" y1="502" x2="306" y2="162" stroke="url(#towerGrad)" stroke-width="4"/>
+  <rect x="228" y="498" width="144" height="9" rx="3" fill="#90aac0"/>
+  <rect x="228" y="498" width="144" height="4" rx="2" fill="#cce0f0" opacity="0.6"/>
+  <g stroke="#b0cade" stroke-width="2.8">
+    <line x1="249" y1="442" x2="351" y2="442"/>
+    <line x1="260" y1="382" x2="340" y2="382"/>
+    <line x1="270" y1="322" x2="330" y2="322"/>
+    <line x1="279" y1="262" x2="321" y2="262"/>
+    <line x1="288" y1="202" x2="312" y2="202"/>
+  </g>
+  <g stroke="#9ab4c8" stroke-width="1.8" opacity="0.88">
+    <line x1="248" y1="502" x2="351" y2="442"/> <line x1="352" y1="502" x2="249" y2="442"/>
+    <line x1="249" y1="442" x2="340" y2="382"/> <line x1="351" y1="442" x2="260" y2="382"/>
+    <line x1="260" y1="382" x2="330" y2="322"/> <line x1="340" y1="382" x2="270" y2="322"/>
+    <line x1="270" y1="322" x2="321" y2="262"/> <line x1="330" y1="322" x2="279" y2="262"/>
+    <line x1="279" y1="262" x2="312" y2="202"/> <line x1="321" y1="262" x2="288" y2="202"/>
+    <line x1="288" y1="202" x2="306" y2="162"/> <line x1="312" y1="202" x2="294" y2="162"/>
+  </g>
+  <line x1="300" y1="162" x2="300" y2="108" stroke="#c0d8f0" stroke-width="5.5"/>
+  <line x1="300" y1="162" x2="300" y2="108" stroke="#eaf6ff" stroke-width="2.2"/>
+  <line x1="294" y1="174" x2="238" y2="174" stroke="#c0d4ea" stroke-width="3.5"/>
+  <line x1="306" y1="174" x2="362" y2="174" stroke="#c0d4ea" stroke-width="3.5"/>
+  <rect x="230" y="150" width="9"  height="34" rx="2.5" fill="#d8ecff" opacity="0.92"/>
+  <rect x="258" y="152" width="8"  height="30" rx="2.5" fill="#d8ecff" opacity="0.88"/>
+  <rect x="334" y="152" width="8"  height="30" rx="2.5" fill="#d8ecff" opacity="0.88"/>
+  <rect x="361" y="150" width="9"  height="34" rx="2.5" fill="#d8ecff" opacity="0.92"/>
+  <g stroke="#6090a8" stroke-width="1" opacity="0.5">
+    <line x1="228" y1="507" x2="198" y2="530"/>
+    <line x1="372" y1="507" x2="402" y2="530"/>
+  </g>
+  <g fill="#3399cc" opacity="0.85">
+    <circle cx="249" cy="442" r="4"/> <circle cx="351" cy="442" r="4"/>
+    <circle cx="260" cy="382" r="4"/> <circle cx="340" cy="382" r="4"/>
+    <circle cx="270" cy="322" r="4"/> <circle cx="330" cy="322" r="4"/>
+    <circle cx="279" cy="262" r="4"/> <circle cx="321" cy="262" r="4"/>
+    <circle cx="288" cy="202" r="4"/> <circle cx="312" cy="202" r="4"/>
+  </g>
+  <circle cx="248" cy="502" r="5.5" fill="#cd040b"/>
+  <circle cx="352" cy="502" r="5.5" fill="#cd040b"/>
+  <!-- Beacon — clean blue-white glow -->
+  <circle cx="300" cy="105" r="10"  fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="300" cy="105" r="7"   fill="#00aadd"/>
+  <circle cx="300" cy="105" r="3.5" fill="white" opacity="0.95"/>
+</g>
+
+<!-- ================================================================ -->
+<!--  RADIO WAVES + ACCENT ELEMENTS                                  -->
+<!-- ================================================================ -->
+<g filter="url(#blueGlow)" opacity="0.85">
+  <path d="M 284,116 A 17,17 0 0,1 316,116" fill="none" stroke="#0088ff" stroke-width="2.8"/>
+  <path d="M 274,104 A 27,27 0 0,1 326,104" fill="none" stroke="#0077ee" stroke-width="2.2"/>
+  <path d="M 264,92  A 37,37 0 0,1 336,92"  fill="none" stroke="#0066cc" stroke-width="1.6"/>
+  <path d="M 254,80  A 47,47 0 0,1 346,80"  fill="none" stroke="#0057a8" stroke-width="1.2" opacity="0.75"/>
+</g>
+
+<!-- Tagline bar + text -->
+<g opacity="0.5">
+  <line x1="185" y1="520" x2="415" y2="520" stroke="url(#taglineGrad)" stroke-width="1.5"/>
+  <line x1="185" y1="515" x2="185" y2="525" stroke="#00aacc" stroke-width="1.5"/>
+  <line x1="415" y1="515" x2="415" y2="525" stroke="#00aacc" stroke-width="1.5"/>
+</g>
+<text x="300" y="535" text-anchor="middle"
+      font-family="Arial Black, sans-serif" font-weight="900"
+      font-size="11" fill="#00d4ff" letter-spacing="3"
+      filter="url(#textGlow)" opacity="0.9">ENGINEERING TOMORROW'S NETWORK</text>
+
+<!-- Inner ring close -->
+<circle cx="300" cy="300" r="247" fill="none" stroke="#00aadd" stroke-width="0.8" opacity="0.3"/>
+
+</svg>

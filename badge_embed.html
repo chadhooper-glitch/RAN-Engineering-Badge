@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAN Engineering &amp; Planning Badge</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Transparent background — blends into whatever Google Sites page color is */
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .badge-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-container img {
+      width: 320px;
+      height: 320px;
+      display: block;
+
+      /* Outer glow — makes it pop against the white Google Sites page */
+      filter:
+        drop-shadow(0 0 18px rgba(0, 212, 255, 0.45))
+        drop-shadow(0 0 36px rgba(0, 212, 255, 0.20))
+        drop-shadow(0 0  6px rgba(0, 212, 255, 0.70));
+
+      /* Subtle float animation */
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+        filter:
+          drop-shadow(0 0 18px rgba(0, 212, 255, 0.45))
+          drop-shadow(0 0 36px rgba(0, 212, 255, 0.20))
+          drop-shadow(0 0  6px rgba(0, 212, 255, 0.70));
+      }
+      50% {
+        transform: translateY(-6px);
+        filter:
+          drop-shadow(0 8px 24px rgba(0, 212, 255, 0.50))
+          drop-shadow(0 0  48px rgba(0, 212, 255, 0.25))
+          drop-shadow(0 0   8px rgba(0, 212, 255, 0.75));
+      }
+    }
+
+    /* Optional team name below badge — matches Google Sites font style */
+    .badge-label {
+      font-family: 'Google Sans', 'Arial', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #333333;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="badge-container">
+    <img
+      src="RAN_Engineering_Planning_Badge.svg"
+      alt="National RAN Engineering &amp; Planning"
+      width="320"
+      height="320"
+    >
+    <span class="badge-label">RAN Engineering &amp; Planning</span>
+  </div>
+
+</body>
+</html>
