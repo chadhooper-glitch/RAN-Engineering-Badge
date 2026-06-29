@@ -43,7 +43,8 @@
       transition: filter 0.3s ease, transform 0.3s ease;
     }
 
-    .badge-container img:hover {
+    .badge-container img:hover,
+    .badge-container img.hovered {
       filter:
         drop-shadow(0 0 12px rgba(0, 212, 255, 0.90))
         drop-shadow(0 0 30px rgba(0, 212, 255, 0.60))
@@ -57,16 +58,38 @@
 <body>
 
   <div class="badge-container">
-    <a href="https://chadhooper-glitch.github.io/RAN-Engineering-Badge/ran_team_page.html" target="_blank">
-      <img
-        src="RAN_Engineering_Planning_Badge.svg"
-        alt="National RAN Engineering &amp; Planning"
-        width="100%"
-        height="100%"
-      >
-    </a>
+    <img
+      id="badge"
+      src="RAN_Engineering_Planning_Badge.svg"
+      alt="National RAN Engineering &amp; Planning"
+      width="100%"
+      height="100%"
+    >
     <span class="badge-label">RAN Engineering &amp; Planning</span>
   </div>
+
+  <script>
+    var badge = document.getElementById('badge');
+    var teamPage = 'https://chadhooper-glitch.github.io/RAN-Engineering-Badge/ran_team_page.html';
+
+    badge.addEventListener('mouseenter', function() {
+      badge.classList.add('hovered');
+    });
+    badge.addEventListener('mouseleave', function() {
+      badge.classList.remove('hovered');
+    });
+    badge.addEventListener('click', function() {
+      window.open(teamPage, '_blank');
+    });
+
+    // Fallback: if mouse enters the iframe at all, activate glow
+    document.addEventListener('mouseenter', function() {
+      badge.classList.add('hovered');
+    });
+    document.addEventListener('mouseleave', function() {
+      badge.classList.remove('hovered');
+    });
+  </script>
 
 </body>
 </html>
