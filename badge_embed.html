@@ -40,6 +40,15 @@
       max-width: 500px;
       max-height: 500px;
       display: block;
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .badge-container img:hover {
+      filter:
+        drop-shadow(0 0 12px rgba(0, 212, 255, 0.90))
+        drop-shadow(0 0 30px rgba(0, 212, 255, 0.60))
+        drop-shadow(0 0 60px rgba(0, 212, 255, 0.35));
+      transform: scale(1.04);
     }
 
     .badge-label { display: none; }
