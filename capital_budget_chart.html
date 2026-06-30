@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital Budget by Submarket — CPG-Cell 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 16px; }
+  .header { background: #fff; border-radius: 6px; padding: 16px 20px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .header h2 { font-size: 18px; color: #222; }
+  .header .sub { font-size: 12px; color: #e00; margin-top: 2px; }
+  .totals { display: flex; gap: 4px; margin-bottom: 12px; }
+  .total-box { flex: 1; padding: 12px 16px; border-radius: 4px; color: white; font-weight: bold; font-size: 20px; text-align: center; }
+  .total-box .label { font-size: 11px; font-weight: normal; opacity: 0.85; margin-bottom: 2px; }
+  .t-spend { background: #1a7a2e; }
+  .t-committed { background: #4caf50; }
+  .t-uncommitted { background: #aaa; }
+  .chart-wrap { background: #fff; border-radius: 6px; padding: 16px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .legend { display: flex; gap: 20px; margin-bottom: 14px; font-size: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 2px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 6px 8px; border-bottom: 2px solid #ddd; color: #555; font-size: 12px; }
+  th.num { text-align: right; }
+  td { padding: 5px 8px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  td.num { text-align: right; font-weight: 600; }
+  td.spend { color: #1a7a2e; }
+  td.committed { color: #4caf50; }
+  td.uncommitted { color: #888; }
+  td.total { color: #222; font-weight: bold; }
+  .bar-cell { width: 40%; padding: 5px 8px; }
+  .bar-wrap { display: flex; height: 18px; border-radius: 2px; overflow: hidden; background: #f0f0f0; }
+  .bar-spend { background: #1a7a2e; }
+  .bar-committed { background: #4caf50; }
+  .bar-uncommitted { background: #bbb; }
+  .bar-total-label { font-size: 11px; color: #333; margin-left: 6px; white-space: nowrap; align-self: center; }
+  .footer { font-size: 11px; color: #999; margin-top: 10px; text-align: right; }
+  tr:hover td { background: #f9f9f9; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>Capital Budget by Submarket &nbsp;|&nbsp; BudgetFunction: CPG-Cell &nbsp;|&nbsp; Budget Year: 2026</h2>
+  <div class="sub">Data Update Time: 6/30/2026 9:01:35 AM &nbsp;&mdash;&nbsp; Source: NSS Analytics</div>
+</div>
+
+<div class="totals">
+  <div class="total-box t-spend"><div class="label">Spend</div>$49.69M</div>
+  <div class="total-box t-committed"><div class="label">Committed</div>$37.94M</div>
+  <div class="total-box t-uncommitted"><div class="label">Uncommitted</div>$30.18M</div>
+</div>
+
+<div class="chart-wrap">
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#1a7a2e"></div>Spend</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4caf50"></div>Committed</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#bbb"></div>Uncommitted</div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Submarket</th>
+        <th class="num">Spend</th>
+        <th class="num">Committed</th>
+        <th class="num">Uncommitted</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div class="footer">Click any row to open live dashboard (VZW SSO required)</div>
+</div>
+
+<script>
+const data = [
+  {r:"Southern Cal Region",s:4081827.06,c:3664206.86,u:2315324.26},
+  {r:"Florida Region",s:3789894.60,c:3623460.61,u:1663061.74},
+  {r:"Northwest Region",s:1998636.04,c:3623453.81,u:2493715.42},
+  {r:"Michigan Indiana Kentu...",s:5273025.47,c:1417995.34,u:1015457.60},
+  {r:"Georgia Alabama Region",s:3648685.33,c:1742477.30,u:1828941.87},
+  {r:"Carolina Tennessee",s:2589108.42,c:2524426.32,u:1841042.27},
+  {r:"Ohio Penn West Virgini...",s:3936083.99,c:2035332.33,u:805434.27},
+  {r:"Southwest Region",s:1974747.22,c:2374944.00,u:2300098.78},
+  {r:"Northern Cal Region",s:3624693.04,c:1298426.26,u:1699607.71},
+  {r:"Great Plains",s:2294553.47,c:2983650.24,u:1252823.28},
+  {r:"Central Gulf Coast",s:1406162.02,c:1806546.28,u:2776068.70},
+  {r:"New York Metro",s:2661563.68,c:1714473.23,u:1287500.10},
+  {r:"Mountain Plains",s:1866387.76,c:2214062.71,u:1208301.53},
+  {r:"Illinois Wisconsin Region",s:2610291.00,c:1679263.51,u:364022.48},
+  {r:"Tri State Region",s:2336925.19,c:1717828.33,u:245973.49},
+  {r:"Central Texas",s:1600635.25,c:1223295.91,u:1235645.84},
+  {r:"Wash-Balt-Virginia Regi...",s:1393175.05,c:519990.06,u:1570458.29},
+  {r:"Upstate New York",s:865546.28,c:677742.44,u:1732088.29},
+  {r:"New England Region",s:1735727.20,c:1093008.31,u:152791.50},
+  {r:"CES Holdback",s:0,c:0,u:2388510.07}
+];
+
+const maxTotal = Math.max(...data.map(d => d.s+d.c+d.u));
+const url = 'https://nssanalytics.nss.vzwnet.com/#/site/Telcom-Cost-Mgmt/views/CapitalBudget/CapitalBudgetbySubmarket?BudgetFunction=CPG-Cell';
+const fmt = v => '$' + (v/1e6).toFixed(2) + 'M';
+const tbody = document.getElementById('tbody');
+
+data.forEach(d => {
+  const total = d.s + d.c + d.u;
+  const pct = v => (v / maxTotal * 100).toFixed(1);
+  const tr = document.createElement('tr');
+  tr.style.cursor = 'pointer';
+  tr.onclick = () => window.open(url, '_blank');
+  tr.innerHTML = `
+    <td>${d.r}</td>
+    <td class="num spend">${fmt(d.s)}</td>
+    <td class="num committed">${fmt(d.c)}</td>
+    <td class="num uncommitted">${fmt(d.u)}</td>
+    <td class="bar-cell">
+      <div style="display:flex;align-items:center">
+        <div class="bar-wrap" style="flex:1">
+          <div class="bar-spend" style="width:${pct(d.s)}%"></div>
+          <div class="bar-committed" style="width:${pct(d.c)}%"></div>
+          <div class="bar-uncommitted" style="width:${pct(d.u)}%"></div>
+        </div>
+        <span class="bar-total-label">${fmt(total)}</span>
+      </div>
+    </td>`;
+  tbody.appendChild(tr);
+});
+</script>
+</body>
+</html>
