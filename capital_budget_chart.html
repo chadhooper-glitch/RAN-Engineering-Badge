@@ -3,13 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capital Budget by Submarket — CPG-Cell 2026</title>
+<title>Capital Budget by Submarket</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 16px; }
-  .header { background: #fff; border-radius: 6px; padding: 16px 20px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-  .header h2 { font-size: 18px; color: #222; }
-  .header .sub { font-size: 12px; color: #e00; margin-top: 2px; }
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .header h2 { font-size: 17px; color: #222; }
+  .header .sub { font-size: 11px; color: #e00; margin-top: 2px; }
+  .live-btn {
+    background: #cd040b;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: background 0.2s;
+  }
+  .live-btn:hover { background: #a00308; }
   .totals { display: flex; gap: 4px; margin-bottom: 12px; }
   .total-box { flex: 1; padding: 12px 16px; border-radius: 4px; color: white; font-weight: bold; font-size: 20px; text-align: center; }
   .total-box .label { font-size: 11px; font-weight: normal; opacity: 0.85; margin-bottom: 2px; }
@@ -28,7 +41,6 @@
   td.spend { color: #1a7a2e; }
   td.committed { color: #4caf50; }
   td.uncommitted { color: #888; }
-  td.total { color: #222; font-weight: bold; }
   .bar-cell { width: 40%; padding: 5px 8px; }
   .bar-wrap { display: flex; height: 18px; border-radius: 2px; overflow: hidden; background: #f0f0f0; }
   .bar-spend { background: #1a7a2e; }
@@ -36,14 +48,17 @@
   .bar-uncommitted { background: #bbb; }
   .bar-total-label { font-size: 11px; color: #333; margin-left: 6px; white-space: nowrap; align-self: center; }
   .footer { font-size: 11px; color: #999; margin-top: 10px; text-align: right; }
-  tr:hover td { background: #f9f9f9; }
+  tr:hover td { background: #f9f9f9; cursor: pointer; }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h2>Capital Budget by Submarket &nbsp;|&nbsp; BudgetFunction: CPG-Cell &nbsp;|&nbsp; Budget Year: 2026</h2>
-  <div class="sub">Data Update Time: 6/30/2026 9:01:35 AM &nbsp;&mdash;&nbsp; Source: NSS Analytics</div>
+<div class="top-bar">
+  <div class="header">
+    <h2>Capital Budget by Submarket &nbsp;|&nbsp; BudgetFunction: CPG-Cell &nbsp;|&nbsp; 2026</h2>
+    <div class="sub">Data snapshot: 6/30/2026 9:01:35 AM &mdash; Source: NSS Analytics</div>
+  </div>
+  <a class="live-btn" href="https://chadhooper-glitch.github.io/RAN-Engineering-Badge/capital_budget.html" target="_blank">&#9654; Open Live Dashboard</a>
 </div>
 
 <div class="totals">
@@ -70,7 +85,7 @@
     </thead>
     <tbody id="tbody"></tbody>
   </table>
-  <div class="footer">Click any row to open live dashboard (VZW SSO required)</div>
+  <div class="footer">Click any row or the button above to open the live interactive dashboard (VZW SSO required)</div>
 </div>
 
 <script>
@@ -98,7 +113,7 @@ const data = [
 ];
 
 const maxTotal = Math.max(...data.map(d => d.s+d.c+d.u));
-const url = 'https://nssanalytics.nss.vzwnet.com/#/site/Telcom-Cost-Mgmt/views/CapitalBudget/CapitalBudgetbySubmarket?BudgetFunction=CPG-Cell';
+const liveUrl = 'https://chadhooper-glitch.github.io/RAN-Engineering-Badge/capital_budget.html';
 const fmt = v => '$' + (v/1e6).toFixed(2) + 'M';
 const tbody = document.getElementById('tbody');
 
@@ -106,8 +121,7 @@ data.forEach(d => {
   const total = d.s + d.c + d.u;
   const pct = v => (v / maxTotal * 100).toFixed(1);
   const tr = document.createElement('tr');
-  tr.style.cursor = 'pointer';
-  tr.onclick = () => window.open(url, '_blank');
+  tr.onclick = () => window.open(liveUrl, '_blank');
   tr.innerHTML = `
     <td>${d.r}</td>
     <td class="num spend">${fmt(d.s)}</td>
