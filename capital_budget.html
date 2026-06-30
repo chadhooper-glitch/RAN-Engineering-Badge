@@ -6,17 +6,55 @@
 <title>Capital Budget by Submarket</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #fff; display: flex; justify-content: center; align-items: flex-start; }
-  tableau-viz { display: block; }
+  body { background: #f4f4f4; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 16px; }
+  .wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .wrapper img { width: 100%; display: block; }
+  .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0);
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wrapper:hover .overlay { background: rgba(0,0,0,0.35); }
+  .overlay-btn {
+    background: #cd040b;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 14px 28px;
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    text-decoration: none;
+    pointer-events: none;
+  }
+  .wrapper:hover .overlay-btn { opacity: 1; }
+  .caption {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #666;
+  }
 </style>
 </head>
 <body>
-<script type='module' src='https://nssanalytics.nss.vzwnet.com/javascripts/api/tableau.embedding.3.latest.min.js'></script>
-<tableau-viz id='tableau-viz'
-  src='https://nssanalytics.nss.vzwnet.com/t/Telcom-Cost-Mgmt/views/CapitalBudget/CapitalBudgetbySubmarket'
-  width='1000'
-  height='863'
-  toolbar='bottom'>
-</tableau-viz>
+<a class="wrapper" href="https://nssanalytics.nss.vzwnet.com/#/site/Telcom-Cost-Mgmt/views/CapitalBudget/CapitalBudgetbySubmarket" target="_blank" rel="noopener">
+  <img src="capital_budget_screenshot.png" alt="Capital Budget by Submarket - Data as of 6/30/2026">
+  <div class="overlay">
+    <span class="overlay-btn">&#9654; Open Live Dashboard</span>
+  </div>
+</a>
+<p class="caption">Data snapshot: 6/30/2026 &mdash; Click image to open live dashboard (VZW SSO required)</p>
 </body>
 </html>
