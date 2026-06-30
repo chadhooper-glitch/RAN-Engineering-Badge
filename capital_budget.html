@@ -6,19 +6,25 @@
 <title>Capital Budget by Submarket</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #fff; display: flex; justify-content: center; }
-  tableau-viz { display: block; width: 100%; }
+  body { background: #fff; }
 </style>
 </head>
 <body>
-<script type='module' src='https://nssanalytics.nss.vzwnet.com/javascripts/api/tableau.embedding.3.latest.min.js'></script>
-<tableau-viz id='tableau-viz'
-  src='https://nssanalytics.nss.vzwnet.com/t/Telcom-Cost-Mgmt/views/CapitalBudget/CapitalBudgetbySubmarket'
-  width='1200'
-  height='900'
-  toolbar='bottom'
-  hide-tabs='false'>
-  <viz-filter field='BudgetFunction' value='CPG-Cell'></viz-filter>
-</tableau-viz>
+<script type='module'>
+  import { TableauViz, TableauEventType, FilterUpdateType } from 'https://nssanalytics.nss.vzwnet.com/javascripts/api/tableau.embedding.3.latest.min.js';
+
+  const viz = new TableauViz();
+  viz.src = 'https://nssanalytics.nss.vzwnet.com/t/Telcom-Cost-Mgmt/views/CapitalBudget/CapitalBudgetbySubmarket';
+  viz.width = '1200';
+  viz.height = '900';
+  viz.toolbar = 'bottom';
+  viz.hideTabs = false;
+  document.body.appendChild(viz);
+
+  viz.addEventListener(TableauEventType.FirstInteractive, async () => {
+    const sheet = viz.workbook.activeSheet;
+    await sheet.applyFilterAsync('BudgetFunction', ['CPG-Cell'], FilterUpdateType.Replace);
+  });
+</script>
 </body>
 </html>
