@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital Budget by Submarket</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #fff; display: flex; justify-content: center; align-items: flex-start; }
+  tableau-viz { display: block; }
+</style>
+</head>
+<body>
+<script type='module' src='https://nssanalytics.nss.vzwnet.com/javascripts/api/tableau.embedding.3.latest.min.js'></script>
+<tableau-viz id='tableau-viz'
+  src='https://nssanalytics.nss.vzwnet.com/t/Telcom-Cost-Mgmt/views/CapitalBudget/CapitalBudgetbySubmarket'
+  width='1000'
+  height='863'
+  toolbar='bottom'>
+</tableau-viz>
+</body>
+</html>
