@@ -58,7 +58,8 @@
     <h2>Capital Budget by Submarket &nbsp;|&nbsp; BudgetFunction: CPG-Cell &nbsp;|&nbsp; 2026</h2>
     <div class="sub">Data snapshot: 6/30/2026 9:01:35 AM &mdash; Source: NSS Analytics</div>
   </div>
-  <a class="live-btn" href="https://chadhooper-glitch.github.io/RAN-Engineering-Badge/capital_budget.html" target="_blank">&#9654; Open Live Dashboard</a>
+  <a class="live-btn" href="https://nssanalytics.nss.vzwnet.com/#/site/Telcom-Cost-Mgmt/views/CapitalBudget/CapitalBudge
+  tbySubmarket?BudgetFunction=CPG-Cell" target="_blank">&#9654; Open Live Dashboard</a>
 </div>
 
 <div class="totals">
@@ -113,7 +114,8 @@ const data = [
 ];
 
 const maxTotal = Math.max(...data.map(d => d.s+d.c+d.u));
-const liveUrl = 'https://chadhooper-glitch.github.io/RAN-Engineering-Badge/capital_budget.html';
+const liveUrl = 'https://nssanalytics.nss.vzwnet.com/#/site/Telcom-Cost-Mgmt/views/CapitalBudget/CapitalBudgetbySubmar
+  ket?BudgetFunction=CPG-Cell';
 const fmt = v => '$' + (v/1e6).toFixed(2) + 'M';
 const tbody = document.getElementById('tbody');
 
