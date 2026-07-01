@@ -17,5 +17,29 @@
   height='900'
   toolbar='bottom'>
 </tableau-viz>
+
+<script>
+(function autoSignIn() {
+  var viz = document.getElementById('tableau-viz');
+  if (!viz) return;
+  function tryClick(root) {
+    var els = root.querySelectorAll('button, [role="button"], a');
+    for (var i = 0; i < els.length; i++) {
+      var t = (els[i].textContent || '').trim().toLowerCase();
+      if (t.indexOf('sign in') >= 0 || t.indexOf('log in') >= 0) {
+        els[i].click(); return true;
+      }
+    }
+    return false;
+  }
+  var attempts = 0;
+  var timer = setInterval(function() {
+    attempts++;
+    var found = tryClick(document);
+    if (!found && viz.shadowRoot) found = tryClick(viz.shadowRoot);
+    if (found || attempts > 40) clearInterval(timer);
+  }, 250);
+})();
+</script>
 </body>
 </html>
